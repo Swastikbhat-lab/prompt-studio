@@ -4,7 +4,7 @@ Prompt Studio ships two surfaces over the same local engine:
 
 | Surface | Best for | What it can do |
 |---|---|---|
-| **Skill** (`skills/prompt-studio/`) | Claude Code, claude.ai | Gate + deterministic packaging + local writer, called as a script |
+| **Skill** (`plugins/prompt-studio/skills/prompt-studio/`) | Claude Code, claude.ai | Gate + deterministic packaging + local writer, called as a script |
 | **MCP server** (`mcp_server.py`) | Claude Code/Desktop, ChatGPT, Cursor, any MCP client | `prompt_gate`, `prompt_build`, `prompt_models` tools |
 
 Nothing here changes the privacy boundary: the gate and packaging run in-process

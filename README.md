@@ -115,7 +115,7 @@ prompt-studio/
 │   ├── workflow.py     # gate → package or write
 │   └── models.py       # typed drafts and results
 ├── web/                # zero-build UI; compiler.js mirrors packaging.py
-├── skills/prompt-studio/  # SKILL.md + self-contained engine for agents
+├── plugins/prompt-studio/ # SKILL.md + MCP config for agent clients
 ├── tests/              # 68 tests
 └── server.py           # stdlib HTTP server, 127.0.0.1 only
 ```

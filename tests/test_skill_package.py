@@ -12,7 +12,7 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILL = ROOT / "skills" / "prompt-studio"
+SKILL = ROOT / "plugins" / "prompt-studio" / "skills" / "prompt-studio"
 DETAILED = (
     "Build a three-day vegetarian meal plan for one person, $80 total, microwave and kettle only, "
     "as a markdown table with a shopping list and a verification checklist."
@@ -44,14 +44,16 @@ class TestSkillFiles(unittest.TestCase):
         plugin = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
         market = json.loads((ROOT / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
         self.assertEqual(plugin["name"], "prompt-studio")
+        self.assertEqual(plugin["skills"], "./plugins/prompt-studio/skills")
+        self.assertEqual(plugin["mcpServers"], "./plugins/prompt-studio/.mcp.json")
         self.assertEqual(market["owner"]["name"], "Swastik Bhat")
         entry = market["plugins"][0]
         self.assertEqual(entry["name"], plugin["name"])
         self.assertEqual(entry["source"], "./")
-        self.assertTrue((ROOT / "skills" / "prompt-studio" / "SKILL.md").is_file())
+        self.assertTrue((ROOT / "plugins" / "prompt-studio" / "skills" / "prompt-studio" / "SKILL.md").is_file())
 
     def test_mcp_config_points_at_the_launcher(self):
-        config = json.loads((ROOT / ".mcp.json").read_text(encoding="utf-8"))
+        config = json.loads((ROOT / "plugins" / "prompt-studio" / ".mcp.json").read_text(encoding="utf-8"))
         server = config["mcpServers"]["prompt-studio"]
         self.assertTrue(server["args"][0].endswith("mcp_server.py"))
         self.assertTrue((ROOT / "mcp_server.py").is_file())

@@ -11,6 +11,6 @@
   "repository": "https://github.com/Swastikbhat-lab/prompt-studio",
   "license": "MIT",
   "keywords": ["prompt-engineering", "local-first", "ollama", "mcp", "jev"],
-  "skills": "./skills",
-  "mcpServers": "./.mcp.json"
+  "skills": "./plugins/prompt-studio/skills",
+  "mcpServers": "./plugins/prompt-studio/.mcp.json"
 }

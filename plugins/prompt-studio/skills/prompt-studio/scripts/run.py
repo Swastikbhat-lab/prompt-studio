@@ -18,7 +18,7 @@ HERE = Path(__file__).resolve()
 CANDIDATES = [
     Path(os.environ["PROMPT_STUDIO_HOME"]).expanduser() if os.environ.get("PROMPT_STUDIO_HOME") else None,
     HERE.parent,
-    HERE.parents[3] if len(HERE.parents) > 3 else None,
+    *HERE.parents,
 ]
 CANDIDATES = [path for path in CANDIDATES if path is not None]
 

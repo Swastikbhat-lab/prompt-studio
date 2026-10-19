@@ -18,7 +18,7 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILL = ROOT / "skills" / "prompt-studio"
+SKILL = ROOT / "plugins" / "prompt-studio" / "skills" / "prompt-studio"
 PACKAGE = ROOT / "prompt_studio"
 NAME_LIMIT = 64
 DESCRIPTION_LIMIT = 200
