@@ -1,0 +1,19 @@
+{
+  "name": "prompt-studio",
+  "owner": {
+    "name": "Swastik Bhat",
+    "url": "https://github.com/Swastikbhat-lab"
+  },
+  "description": "Agent skill and MCP server for a local-first prompt compiler.",
+  "version": "0.4.0",
+  "plugins": [
+    {
+      "name": "prompt-studio",
+      "source": "./",
+      "description": "Compile rough requests into reviewable prompts locally, with a Jev System-1 gate deciding when a model call is worth it.",
+      "version": "0.4.0",
+      "category": "productivity",
+      "tags": ["prompt-engineering", "local-first", "mcp", "ollama"]
+    }
+  ]
+}

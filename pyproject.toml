@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "prompt-studio"
-version = "0.3.0"
-description = "Local prompt compiler with a Jev System-1 decision gate"
+version = "0.4.0"
+description = "Local prompt compiler with a Jev System-1 decision gate, packaged as a skill and an MCP server"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -15,9 +15,17 @@ dependencies = []
 [project.optional-dependencies]
 dev = ["pytest>=8"]
 
+[project.scripts]
+prompt-studio = "prompt_studio.cli:main"
+prompt-studio-mcp = "prompt_studio.mcp:main"
+
 
 [tool.setuptools]
 packages = ["prompt_studio"]
+
+[project.urls]
+Homepage = "https://github.com/Swastikbhat-lab/prompt-studio"
+Documentation = "https://github.com/Swastikbhat-lab/prompt-studio/blob/main/docs/integrations.md"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

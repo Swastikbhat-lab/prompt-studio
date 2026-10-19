@@ -9,6 +9,28 @@ machine, behind a loopback-only server.
 No cloud provider, no API key, no telemetry. One request in, one reviewable
 prompt out.
 
+## Use it from your agent
+
+Prompt Studio ships as a **skill** and an **MCP server**, so the same gate works
+inside Claude Code, Claude Desktop, claude.ai, ChatGPT, Cursor, or any MCP
+client. Full setup, including what does and does not work on each surface:
+[docs/integrations.md](docs/integrations.md).
+
+```text
+/plugin marketplace add Swastikbhat-lab/prompt-studio
+/plugin install prompt-studio@prompt-studio
+```
+
+```bash
+python scripts/install_skill.py                          # personal Claude Code skill
+claude mcp add --scope user prompt-studio -- python "$PWD/mcp_server.py"
+python mcp_server.py --http --port 4180                  # remote connectors
+```
+
+The MCP tools are `prompt_gate`, `prompt_build` and `prompt_models`. ChatGPT on
+the web needs a public HTTPS endpoint or OpenAI's Secure MCP Tunnel; the desktop
+app can launch the stdio server directly.
+
 ---
 
 ## Why a gate before the prompt
@@ -93,7 +115,8 @@ prompt-studio/
 │   ├── workflow.py     # gate → package or write
 │   └── models.py       # typed drafts and results
 ├── web/                # zero-build UI; compiler.js mirrors packaging.py
-├── tests/              # 41 tests
+├── skills/prompt-studio/  # SKILL.md + self-contained engine for agents
+├── tests/              # 68 tests
 └── server.py           # stdlib HTTP server, 127.0.0.1 only
 ```
 
@@ -103,7 +126,7 @@ model suggestion cannot silently replace your constraints.
 
 ## Measured on the development machine
 
-- 41 tests pass (`pytest`, 2026-10-19).
+- 68 tests pass (`pytest`, 2026-10-19).
 - Gate latency: **0.3–1.7 ms** per request (measured, shown in the UI).
 - Deterministic package round-trip: **0.09 s** wall time, no model call.
 - Local writer: `gemma2:9b` via Ollama took **26–57 s** for the demo request,

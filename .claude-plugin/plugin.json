@@ -1,0 +1,16 @@
+{
+  "name": "prompt-studio",
+  "displayName": "Prompt Studio",
+  "version": "0.4.0",
+  "description": "Local prompt compiler: a Jev System-1 gate routes each request to deterministic packaging, bounded clarification, or a single draft, and only calls the local writer when it earns the call.",
+  "author": {
+    "name": "Swastik Bhat",
+    "url": "https://github.com/Swastikbhat-lab"
+  },
+  "homepage": "https://github.com/Swastikbhat-lab/prompt-studio",
+  "repository": "https://github.com/Swastikbhat-lab/prompt-studio",
+  "license": "MIT",
+  "keywords": ["prompt-engineering", "local-first", "ollama", "mcp", "jev"],
+  "skills": "./skills",
+  "mcpServers": "./.mcp.json"
+}
