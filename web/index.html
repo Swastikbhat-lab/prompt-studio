@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>Prompt Studio — local-first prompt compiler</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/compiler.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brandmark" aria-hidden="true">P</div>
+      <div><p class="eyebrow">PROMPT STUDIO</p><p class="subhead">Jev gate first. Local writer only when it earns the call.</p></div>
+      <div class="privacy-pill"><span></span> Local only</div>
+    </header>
+
+    <section class="card request-card" aria-labelledby="request-heading">
+      <div class="section-title"><div><p class="eyebrow">01 / YOUR TASK</p><h1 id="request-heading">What do you want to do?</h1></div><span class="step-tag">No personal sources connected</span></div>
+      <label for="request">Describe the outcome in your own words</label>
+      <textarea id="request" maxlength="20000" placeholder="e.g. Build a three-day vegetarian meal plan for one person, $80 total, microwave and kettle only, as a markdown table." rows="5"></textarea>
+      <div class="request-footer"><span>Be rough — the gate decides whether a local model round-trip is worth it.</span><span id="char-count">0 / 20,000</span></div>
+      <label for="context">Task-only context — paste selected notes (optional, not saved)</label>
+      <textarea id="context" maxlength="8000" rows="3" placeholder="Paste the relevant note or project facts here. No vault is scanned."></textarea>
+      <div class="model-row"><label for="strategy">Fast pattern</label><select id="strategy"><option value="original">Original — no rewrite</option><option value="brief" selected>General brief</option><option value="coding">Coding / debugging</option><option value="research">Research / learning</option><option value="writing">Writing</option><option value="decision">Decision / planning</option></select></div>
+      <div class="model-row"><label for="model">Installed local model</label><select id="model" aria-label="Installed local model"></select><span id="model-status" role="status">Checking local Ollama…</span></div>
+      <div class="primary-actions"><button class="primary" id="generate" type="button">Build prompt <span aria-hidden="true">→</span></button><button class="secondary" id="rewrite" type="button">Rewrite with local model</button><button class="quiet" id="clear" type="button">Clear</button></div>
+      <p class="privacy-note">The gate runs first and returns a route plus measured latency. A deterministic package makes no model call; the local writer is used only for clarification or a requested rewrite.</p>
+      <div id="error" class="error" role="alert" hidden></div>
+      <p class="privacy-note">Your request stays on this computer and is sent only to local Ollama when the gate asks for it. No vault, notes, chat exports, cloud model, or telemetry are accessed.</p>
+    </section>
+
+    <section id="review" class="card review-card" aria-labelledby="review-heading" hidden>
+      <div class="section-title"><div><p class="eyebrow">02 / REVIEW &amp; REFINE</p><h2 id="review-heading">Gate decision and prompt</h2></div><span id="run-meta" class="step-tag"></span></div>
+      <div id="decision" class="decision" hidden>
+        <div class="decision-head"><span class="eyebrow">JEV GATE</span><span id="decision-route" class="route-chip"></span><span id="decision-latency" class="decision-latency"></span></div>
+        <div class="metrics">
+          <div class="metric"><span>Specificity<strong id="m-spec">0.00</strong></span><div class="bar"><i id="b-spec"></i></div></div>
+          <div class="metric"><span>Ambiguity<strong id="m-amb">0.00</strong></span><div class="bar"><i id="b-amb"></i></div></div>
+          <div class="metric"><span>Context bloat<strong id="m-bloat">0.00</strong></span><div class="bar"><i id="b-bloat"></i></div></div>
+        </div>
+        <div id="decision-constraints" class="chips"></div>
+        <div id="decision-flags" class="chips"></div>
+        <p id="decision-rationale" class="decision-rationale"></p>
+      </div>
+      <div id="summary" class="summary" hidden></div>
+      <div id="questions" class="questions"></div>
+      <div id="assumptions" class="assumptions" hidden></div>
+      <div id="refine-actions" class="primary-actions" hidden>
+        <button class="primary" id="refine" type="button">Regenerate with answers <span aria-hidden="true">→</span></button>
+        <button class="secondary" id="draft-now" type="button">Continue with visible assumptions</button>
+      </div>
+      <div id="prompt-section" hidden>
+        <div class="prompt-heading"><div><p class="eyebrow">GENERATED INSTRUCTION</p><h3>Review before you use it</h3></div><div class="export-actions"><button id="copy" type="button">Copy prompt</button><button id="download" type="button">Download .txt</button></div></div>
+        <textarea id="prompt" class="prompt-output" aria-label="Editable generated prompt" rows="13"></textarea>
+        <div class="request-footer"><span>Editable. Copy or download exports only the text shown here.</span><span id="copy-status" role="status"></span></div>
+      </div>
+    </section>
+    <footer><span>Portable prompt, for whichever target LLM you choose.</span><span>No prompt leaves this machine.</span></footer>
+  </main>
+</body>
+</html>
